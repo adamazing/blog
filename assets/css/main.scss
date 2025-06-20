@@ -14,3 +14,84 @@ search: false
 
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+
+@mixin dojaggerborder($sc, $ec, $sx, $sy) {
+  background:
+    linear-gradient(
+      45deg, $sc 33.333%,
+      $ec 33.333%, $ec 66.667%,
+      $sc 66.667%
+    ),
+    linear-gradient(
+      -45deg, $sc 33.333%,
+      $ec 33.333%, $ec 66.667%,
+      $sc 66.667%
+    );
+  background-size: $sx $sy;
+}
+
+@media (min-width: 80em) {
+  .page__footer footer {
+    max-width: 100%;
+  }
+}
+
+#footer footer {
+  padding: 0;
+  margin: 0;
+  width: 100%;
+}
+
+.jagged-wrap-inner {
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+.jagged-border {
+  position: relative;
+  width: 100%;
+  height: 50px;
+  filter: drop-shadow(rgba(0, 0, 0, 0.3) 0px -4px 2px);
+
+  &:before {
+    content: "";
+    display: block;
+    position: absolute;
+    top: -10px;
+    width: 100%;
+    height: 10px;
+  }
+}
+
+.lightgray-bg {
+  background: #ECF0F1;
+  height: 8px;
+
+  &:before {
+    @include dojaggerborder(transparent, #ECF0F1, 20px, 40px);
+  }
+}
+
+.white-bg {
+  background: #FFF;
+  height: 8px;
+
+  &:before {
+    @include dojaggerborder(transparent, #fff, 20px, 40px);
+  }
+}
+
+.darkgray-bg {
+  background: #C3C9CC;
+  height: 100px;
+
+  &:before {
+    @include dojaggerborder(transparent, #C3C9CC, 20px, 40px);
+  }
+}
+
+.inner-footer-container {
+  color: #333;
+  padding: 20px 20px 0px 20px;
+}
